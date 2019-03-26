@@ -156,7 +156,7 @@ def main():
 
     last_week = datetime.datetime.now() - datetime.timedelta(7)
     # Save in a file with the current timestamp
-    with open('bunq-%s.csv' % (str(datetime.datetime.now())), 'w') as csvfile:
+    with open('export/bunq-%s.csv' % (str(datetime.datetime.now())), 'w') as csvfile:
         spamwriter = csv.writer(csvfile)
         for row in all_transactions(last_week):
             spamwriter.writerow(map(str,row))
