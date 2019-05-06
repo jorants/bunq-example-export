@@ -87,13 +87,22 @@ def all_transactions(dt = None):
     # Then you get the url params from it using 'url_params_count_only'
     pagination = Pagination()
     pagination.count = 100
+
+    accounts = []
+
     all_monetary_account_bank = endpoint.MonetaryAccountBank.list(
         pagination.url_params_count_only).value
 
-    accounts = []
     for monetary_account_bank in all_monetary_account_bank:
         if monetary_account_bank.status == "ACTIVE":
             accounts.append(monetary_account_bank)
+
+    all_monetary_account_savings = endpoint.MonetaryAccountSavings.list(
+    pagination.url_params_count_only).value
+
+    for monetary_account_savings in all_monetary_account_savings:
+        if monetary_account_savings.status == "ACTIVE":
+            accounts.append(monetary_account_savings)
 
     # Reload where we where last time.
     try:
